@@ -7,7 +7,7 @@ import net.minecraft.registry.tag.ItemTags;
 public class ToolMaterials {
     public static final ToolMaterial ROCK_TOOL_MATERIAL = new ToolMaterial(
 		BlockTags.INCORRECT_FOR_WOODEN_TOOL,
-		32,
+		16,
 		1F,
 		2F,
 		1,

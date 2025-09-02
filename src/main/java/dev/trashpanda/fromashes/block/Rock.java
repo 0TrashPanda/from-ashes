@@ -1,16 +1,22 @@
 package dev.trashpanda.fromashes.block;
 
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import com.mojang.serialization.MapCodec;
 
+import dev.trashpanda.fromashes.init.BlockContent;
+import dev.trashpanda.fromashes.init.ItemContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -108,9 +114,36 @@ public class Rock extends HorizontalFacingBlock {
 	}
 
 	@Override
-	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-		if (!world.isClient && !player.isCreative()) {
-			world.spawnEntity(new net.minecraft.entity.ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), this.asItem().getDefaultStack()));
+	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+		Logger logger = LoggerFactory.getLogger(Rock.class);
+		logger.info("afterBreak called");
+		if (!player.getMainHandStack().isOf(ItemContent.ROCK)) {
+			logger.info("Player is not holding a rock");
+			super.afterBreak(world, player, pos, state, blockEntity, stack);
+			return;
+		}
+
+		if (world.random.nextFloat() < 0.8f) {
+			logger.info("Consuming one rock from player's hand");
+			player.getMainHandStack().decrement(1);
+		}
+
+		if (world.random.nextFloat() < 0.5f) {
+			logger.info("Stopping rock from breaking");
+			world.setBlockState(pos, state, 3);
+		}
+
+		if (world.random.nextFloat() < 0.2f) {
+			logger.info("Dropping rock chunk");
+			world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemContent.ROCK_CHUNK, 1)));
+		}
+
+		if (world.random.nextFloat() < 0.6f) {
+			int itemCount = 1 + world.random.nextInt(2);
+			logger.info("Dropping {} rock chunks", itemCount);
+			world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemContent.ROCK_CHUNK, itemCount)));
 		}
 	}
+
+
 }
