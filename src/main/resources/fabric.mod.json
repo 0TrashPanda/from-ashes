@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "from-ashes",
+	"id": "fromashes",
 	"version": "${version}",
-	"name": "From Ashes",
+	"name": "fromashes",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"
@@ -12,33 +12,30 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/from-ashes/icon.png",
+	"icon": "assets/fromashes/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"dev.trashpanda.fromashes.FromAshes"
+			"dev.trashpanda.fromashes.Fromashes"
 		],
 		"client": [
-			"dev.trashpanda.fromashes.FromAshesClient"
+			"dev.trashpanda.fromashes.client.FromashesClient"
 		],
 		"fabric-datagen": [
-			"dev.trashpanda.fromashes.FromAshesDataGenerator"
+			"dev.trashpanda.fromashes.client.FromashesDataGenerator"
 		]
 	},
 	"mixins": [
-		"from-ashes.mixins.json",
+		"fromashes.mixins.json",
 		{
-			"config": "from-ashes.client.mixins.json",
+			"config": "fromashes.client.mixins.json",
 			"environment": "client"
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.17.2",
-		"minecraft": "~1.21.8",
-		"java": ">=21",
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
