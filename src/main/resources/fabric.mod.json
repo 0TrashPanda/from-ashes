@@ -20,9 +20,6 @@
 		],
 		"client": [
 			"dev.trashpanda.fromashes.client.FromashesClient"
-		],
-		"fabric-datagen": [
-			"dev.trashpanda.fromashes.client.FromashesDataGenerator"
 		]
 	},
 	"mixins": [
