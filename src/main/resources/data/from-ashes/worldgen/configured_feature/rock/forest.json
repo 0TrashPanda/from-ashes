@@ -1,0 +1,15 @@
+{
+  "type": "from-ashes:rock_scatter",
+  "config": {
+    "profile": "forest",
+    "min_rocks": 1,
+    "max_rocks": 3,
+    "min_spread": 1,
+    "max_spread": 3,
+    "max_water_distance": 0,
+    "min_water_rise": 0,
+    "max_water_rise": 0,
+    "min_slope": 1,
+    "extra_placement_chance": 0.55
+  }
+}
