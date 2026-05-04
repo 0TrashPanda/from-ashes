@@ -10,4 +10,4 @@ pluginManagement {
 }
 
 // Should match your modid
-rootProject.name = 'fromashes'
+rootProject.name = 'from-ashes'

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "from-ashes:block/rock" },
+    "facing=south": { "model": "from-ashes:block/rock", "y": 180 },
+    "facing=west":  { "model": "from-ashes:block/rock", "y": 270 },
+    "facing=east":  { "model": "from-ashes:block/rock", "y": 90 }
+  }
+}

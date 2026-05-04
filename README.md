@@ -1,4 +1,4 @@
-# fromashes
+# From Ashes
 
 ## Setup
 
