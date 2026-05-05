@@ -31,7 +31,7 @@ public class ModBlocks {
 	public static final Block WHET_STONE = register(
 			"whet_stone",
 			WhetStoneBlock::new,
-			BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(4.0F),
+			BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(4.0F).noOcclusion(),
 			false
 	);
 

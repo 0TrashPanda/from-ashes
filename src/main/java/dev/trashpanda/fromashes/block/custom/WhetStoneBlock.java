@@ -9,8 +9,11 @@ import dev.trashpanda.fromashes.block.entity.custom.WhetStoneBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -90,4 +93,21 @@ public class WhetStoneBlock extends BaseEntityBlock {
     public static BlockState getState(final BlockGetter level, final Direction facing) {
         return ModBlocks.WHET_STONE.defaultBlockState().setValue(FACING, facing);
     }
+
+    	@Override
+	protected BlockState updateShape(
+		final BlockState state,
+		final LevelReader level,
+		final ScheduledTickAccess ticks,
+		final BlockPos pos,
+		final Direction directionToNeighbour,
+		final BlockPos neighbourPos,
+		final BlockState neighbourState,
+		final RandomSource random
+	) {
+		if (!level.getFluidState(pos.relative(state.getValue(FACING))).is(FluidTags.WATER) && !level.getFluidState(pos.relative(state.getValue(FACING)).above()).is(FluidTags.WATER)) {
+            return Blocks.STONE.defaultBlockState();
+        }
+        return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
+	}
 }
