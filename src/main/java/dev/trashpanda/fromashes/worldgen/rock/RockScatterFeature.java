@@ -1,7 +1,7 @@
 package dev.trashpanda.fromashes.worldgen.rock;
 
 import dev.trashpanda.fromashes.block.ModBlocks;
-import dev.trashpanda.fromashes.block.Rock;
+import dev.trashpanda.fromashes.block.custom.RockBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -54,7 +54,7 @@ public class RockScatterFeature extends Feature<RockScatterFeatureConfig> {
             }
 
             BlockState rockState = ModBlocks.ROCK.defaultBlockState()
-                    .setValue(Rock.FACING, Direction.from2DDataValue(random.nextInt(4)));
+                    .setValue(RockBlock.FACING, Direction.from2DDataValue(random.nextInt(4)));
             level.setBlock(candidate, rockState, Block.UPDATE_CLIENTS);
             placed++;
         }

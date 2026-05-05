@@ -3,6 +3,8 @@ package dev.trashpanda.fromashes.block;
 import java.util.function.Function;
 
 import dev.trashpanda.fromashes.FromAshes;
+import dev.trashpanda.fromashes.block.custom.RockBlock;
+import dev.trashpanda.fromashes.block.custom.WhetStoneBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
@@ -20,11 +22,18 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 public class ModBlocks {
     public static final Block ROCK = register(
             "rock",
-            Rock::new,
+            RockBlock::new,
             BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(4.0F),
             false
     );
     public static final Item ROCK_ITEM = registerRockItem("rock", ROCK);
+
+	public static final Block WHET_STONE = register(
+			"whet_stone",
+			WhetStoneBlock::new,
+			BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(4.0F),
+			false
+	);
 
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
 		// Create a registry key for the block

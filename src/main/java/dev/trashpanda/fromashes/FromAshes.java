@@ -1,6 +1,7 @@
 package dev.trashpanda.fromashes;
 
 import dev.trashpanda.fromashes.block.ModBlocks;
+import dev.trashpanda.fromashes.block.entity.ModBlockEntities;
 import dev.trashpanda.fromashes.item.ModItems;
 import dev.trashpanda.fromashes.worldgen.FromAshesBiomeModifications;
 import dev.trashpanda.fromashes.worldgen.FromAshesWorldPlacedFeatures;
@@ -16,6 +17,7 @@ public class FromAshes implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModBlocks.initialize();
+		ModBlockEntities.initialize();
 		ModItems.initialize();
 		ModFeatures.initialize();
 		FromAshesBiomeModifications.initialize();

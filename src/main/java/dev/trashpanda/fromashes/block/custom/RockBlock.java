@@ -1,4 +1,4 @@
-package dev.trashpanda.fromashes.block;
+package dev.trashpanda.fromashes.block.custom;
 
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mojang.serialization.MapCodec;
 
+import dev.trashpanda.fromashes.block.ModBlocks;
 import dev.trashpanda.fromashes.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,22 +35,22 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 
-public class Rock extends HorizontalDirectionalBlock {
-    public static final MapCodec<Rock> CODEC = simpleCodec(Rock::new);
+public class RockBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<RockBlock> CODEC = simpleCodec(RockBlock::new);
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     private final RandomSource random = RandomSource.create();
-	public static final Logger LOGGER = LoggerFactory.getLogger(Rock.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(RockBlock.class);
 
 
 
 
-    public Rock(final BlockBehaviour.Properties properties) {
+    public RockBlock(final BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
 	@Override
-	public MapCodec<Rock> codec() {
+	public MapCodec<RockBlock> codec() {
 		return CODEC;
 	}
 

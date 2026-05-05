@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import dev.trashpanda.fromashes.FromAshes;
 import dev.trashpanda.fromashes.block.ModBlocks;
+import dev.trashpanda.fromashes.item.custom.RockChunkItem;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -17,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class ModItems {
 
-    public static final Item ROCK_CHUNK = register("rock_chunk", Item::new, new Item.Properties());
+    public static final Item ROCK_CHUNK = register("rock_chunk", RockChunkItem::new, new Item.Properties());
     public static final Item ROCK_SHARD = register("rock_shard", Item::new, new Item.Properties());
 
 	public static final ResourceKey<CreativeModeTab> CUSTOM_CREATIVE_TAB_KEY = ResourceKey.create(
