@@ -1,0 +1,12 @@
+{
+  "type": "from-ashes:whetstone_shaping",
+  "ingredient": "from-ashes:rock_shard",
+  "result": "from-ashes:celt_head",
+  "display_name": {
+    "translate": "item.from-ashes.celt_head"
+  },
+  "description": {
+    "translate": "dialog.from-ashes.whetstone.celt_head"
+  },
+  "show_notification": false
+}

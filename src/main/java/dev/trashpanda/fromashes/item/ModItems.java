@@ -20,6 +20,9 @@ public class ModItems {
 
     public static final Item ROCK_CHUNK = register("rock_chunk", RockChunkItem::new, new Item.Properties());
     public static final Item ROCK_SHARD = register("rock_shard", Item::new, new Item.Properties());
+    public static final Item CELT_HEAD = register("celt_head", Item::new, new Item.Properties());
+    public static final Item KNIFE_BLADE = register("knife_blade", Item::new, new Item.Properties());
+    public static final Item HAMMER_HEAD = register("hammer_head", Item::new, new Item.Properties());
 
 	public static final ResourceKey<CreativeModeTab> CUSTOM_CREATIVE_TAB_KEY = ResourceKey.create(
 			BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.fromNamespaceAndPath(FromAshes.MOD_ID, "creative_tab")
@@ -31,6 +34,9 @@ public class ModItems {
 			.displayItems((params, output) -> {
 				output.accept(ROCK_CHUNK);
 				output.accept(ROCK_SHARD);
+                output.accept(CELT_HEAD);
+                output.accept(KNIFE_BLADE);
+                output.accept(HAMMER_HEAD);
 
 				output.accept(ModBlocks.ROCK.asItem());
 			})

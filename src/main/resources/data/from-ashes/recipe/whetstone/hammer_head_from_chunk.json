@@ -1,0 +1,12 @@
+{
+  "type": "from-ashes:whetstone_shaping",
+  "ingredient": "from-ashes:rock_chunk",
+  "result": "from-ashes:hammer_head",
+  "display_name": {
+    "translate": "item.from-ashes.hammer_head"
+  },
+  "description": {
+    "translate": "dialog.from-ashes.whetstone.hammer_head"
+  },
+  "show_notification": false
+}

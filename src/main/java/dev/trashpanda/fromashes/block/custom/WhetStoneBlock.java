@@ -6,10 +6,14 @@ import com.mojang.serialization.MapCodec;
 
 import dev.trashpanda.fromashes.block.ModBlocks;
 import dev.trashpanda.fromashes.block.entity.custom.WhetStoneBlockEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -24,6 +28,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerLevel;
+import dev.trashpanda.fromashes.whetstone.WhetstoneDialogFactory;
+import dev.trashpanda.fromashes.whetstone.WhetstoneRecipeFinder;
 
 public class WhetStoneBlock extends BaseEntityBlock {
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -110,4 +119,33 @@ public class WhetStoneBlock extends BaseEntityBlock {
         }
         return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
 	}
+
+    @Override
+    protected InteractionResult useItemOn(
+            ItemStack itemStack,
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hitResult
+    ) {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+            var selections = WhetstoneRecipeFinder.findMatches((ServerLevel) serverPlayer.level(), itemStack);
+            if (selections.isEmpty()) {
+                return InteractionResult.PASS;
+            }
+            serverPlayer.openDialog(
+                    WhetstoneDialogFactory.createShapeSelectionDialog(
+                            pos.getX(),
+                            pos.getY(),
+                            pos.getZ(),
+                            itemStack,
+                            selections
+                    )
+            );
+        }
+
+        return InteractionResult.SUCCESS;
+    }
 }

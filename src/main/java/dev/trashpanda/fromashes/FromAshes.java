@@ -5,6 +5,7 @@ import dev.trashpanda.fromashes.block.entity.ModBlockEntities;
 import dev.trashpanda.fromashes.item.ModItems;
 import dev.trashpanda.fromashes.worldgen.FromAshesBiomeModifications;
 import dev.trashpanda.fromashes.worldgen.FromAshesWorldPlacedFeatures;
+import dev.trashpanda.fromashes.whetstone.recipe.ModWhetstoneRecipes;
 import dev.trashpanda.fromashes.worldgen.rock.ModFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -23,6 +24,7 @@ public class FromAshes implements ModInitializer {
 		ModBlocks.initialize();
 		ModBlockEntities.initialize();
 		ModItems.initialize();
+        ModWhetstoneRecipes.initialize();
 		ModFeatures.initialize();
 		FromAshesBiomeModifications.initialize();
 

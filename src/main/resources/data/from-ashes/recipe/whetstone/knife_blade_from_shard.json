@@ -1,0 +1,12 @@
+{
+  "type": "from-ashes:whetstone_shaping",
+  "ingredient": "from-ashes:rock_shard",
+  "result": "from-ashes:knife_blade",
+  "display_name": {
+    "translate": "item.from-ashes.knife_blade"
+  },
+  "description": {
+    "translate": "dialog.from-ashes.whetstone.knife_blade"
+  },
+  "show_notification": false
+}

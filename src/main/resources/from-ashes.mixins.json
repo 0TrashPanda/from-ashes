@@ -3,7 +3,7 @@
 	"package": "dev.trashpanda.fromashes.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"ExampleMixin"
+		"ServerCommonPacketListenerImplMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

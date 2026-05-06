@@ -2,5 +2,16 @@
   "block.from-ashes.rock": "Rock",
   "item.from-ashes.rock_shard": "Rock Shard",
   "item.from-ashes.rock_chunk": "Rock Chunk",
+  "item.from-ashes.celt_head": "Celt Head",
+  "item.from-ashes.knife_blade": "Knife Blade",
+  "item.from-ashes.hammer_head": "Hammer Head",
+  "dialog.from-ashes.whetstone.title": "Shape %s",
+  "dialog.from-ashes.whetstone.prompt.single": "Choose the shaping result for this %2$s.",
+  "dialog.from-ashes.whetstone.prompt.multiple": "Choose one of %1$s shaping results for this %2$s.",
+  "dialog.from-ashes.whetstone.celt_head": "A rough axe head placeholder for hafted cutting tools.",
+  "dialog.from-ashes.whetstone.knife_blade": "A small flaked blade placeholder for knives and fine cutting.",
+  "dialog.from-ashes.whetstone.hammer_head": "A compact head placeholder for pounding and shaping tools.",
+  "dialog.from-ashes.whetstone.selected": "Selected: %s",
+  "dialog.from-ashes.whetstone.invalid": "That whetstone selection is no longer valid.",
   "creativeTab.fromashes": "From Ashes"
 }
