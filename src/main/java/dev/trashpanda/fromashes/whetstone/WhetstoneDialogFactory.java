@@ -8,6 +8,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.dialog.ActionButton;
 import net.minecraft.server.dialog.CommonButtonData;
 import net.minecraft.server.dialog.CommonDialogData;
@@ -19,6 +20,7 @@ import net.minecraft.server.dialog.body.DialogBody;
 import net.minecraft.server.dialog.body.ItemBody;
 import net.minecraft.server.dialog.body.PlainMessage;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public final class WhetstoneDialogFactory {
     private static final int BUTTON_WIDTH = 220;
@@ -30,6 +32,7 @@ public final class WhetstoneDialogFactory {
             final int x,
             final int y,
             final int z,
+            final ResourceKey<Level> dimension,
             final ItemStack sourceStack,
             final List<WhetstoneRecipeSelection> selections
     ) {
@@ -52,6 +55,7 @@ public final class WhetstoneDialogFactory {
             payload.putInt("x", x);
             payload.putInt("y", y);
             payload.putInt("z", z);
+            payload.putString("dimension", dimension.identifier().toString());
             payload.putString("recipe", selection.holder().id().identifier().toString());
             actions.add(
                     new ActionButton(

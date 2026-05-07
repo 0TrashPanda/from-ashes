@@ -140,6 +140,7 @@ public class WhetStoneBlock extends BaseEntityBlock {
                             pos.getX(),
                             pos.getY(),
                             pos.getZ(),
+                            level.dimension(),
                             itemStack,
                             selections
                     )

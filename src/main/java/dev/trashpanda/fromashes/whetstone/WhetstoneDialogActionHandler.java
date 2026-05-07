@@ -10,8 +10,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.chunk.LevelChunk;
 
 public final class WhetstoneDialogActionHandler {
     public static final Identifier ACTION_ID = Identifier.fromNamespaceAndPath("from-ashes", "whetstone_select");
@@ -31,11 +33,17 @@ public final class WhetstoneDialogActionHandler {
         );
         String recipeId = tag.getStringOr("recipe", "");
         if (recipeId.isEmpty()) {
+            player.sendSystemMessage(Component.literal("recipeId is empty"));
             player.sendSystemMessage(Component.translatable("dialog.from-ashes.whetstone.invalid"));
             return true;
         }
 
-        if (!(player.level().getBlockEntity(pos) instanceof WhetStoneBlockEntity whetStoneBlockEntity)) {
+        ServerLevel serverLevel = resolveLevel(player, tag);
+        if (serverLevel == null) {
+            player.sendSystemMessage(Component.translatable("dialog.from-ashes.whetstone.invalid"));
+            return true;
+        }
+        if (!(serverLevel.getChunkAt(pos).getBlockEntity(pos, LevelChunk.EntityCreationType.IMMEDIATE) instanceof WhetStoneBlockEntity whetStoneBlockEntity)) {
             player.sendSystemMessage(Component.translatable("dialog.from-ashes.whetstone.invalid"));
             return true;
         }
@@ -70,6 +78,24 @@ public final class WhetstoneDialogActionHandler {
         whetStoneBlockEntity.setSelectedRecipeId(selectedRecipe.id().identifier().toString());
         player.sendSystemMessage(Component.translatable("dialog.from-ashes.whetstone.selected", selectedRecipe.value().displayName()));
         return true;
+    }
+
+    private static ServerLevel resolveLevel(final ServerPlayer player, final CompoundTag tag) {
+        String dimensionId = tag.getStringOr("dimension", "");
+        if (dimensionId.isEmpty()) {
+            return (ServerLevel) player.level();
+        }
+
+        Identifier dimensionIdentifier = Identifier.tryParse(dimensionId);
+        if (dimensionIdentifier == null) {
+            return null;
+        }
+
+        ServerLevel currentLevel = (ServerLevel) player.level();
+        if (!dimensionIdentifier.equals(currentLevel.dimension().identifier())) {
+            return null;
+        }
+        return currentLevel;
     }
 
     @SuppressWarnings("unchecked")
